@@ -20,8 +20,8 @@ public class Point {
     }
     public Point translated(float dx, float dy){
         Point point2 = new Point();
-        x = this.x + dx;
-        y = this.y + dy;
+        point2.x = this.x + dx;
+        point2.y = this.y + dy;
 
         return point2;
     }
