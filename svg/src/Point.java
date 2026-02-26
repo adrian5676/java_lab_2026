@@ -14,4 +14,15 @@ public class Point {
     public String toSvg(){
         return String.format(Locale.ENGLISH, "<circle r=\"5\" cx=\"%f\" cy=\"%f\" fill=\"red\" />",x,y);
     }
+    public void translate(float dx, float dy){
+        x = x + dx;
+        y = y + dy;
+    }
+    public Point translated(float dx, float dy){
+        Point point2 = new Point();
+        x = this.x + dx;
+        y = this.y + dy;
+
+        return point2;
+    }
 }
