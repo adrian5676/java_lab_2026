@@ -4,6 +4,12 @@ public class Segment {
         this.p=p;
         this.q=q;
     }
+
+    @Override
+    public String toString() {
+        return "Segment:{p="+p+", q="+q+"}";
+    }
+
     public float length(){
         return (float) Math.hypot(p.getX() - q.getX(), p.getY() - q.getX());
     }
