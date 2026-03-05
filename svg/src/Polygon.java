@@ -6,11 +6,14 @@ public class Polygon {
     private Point [] points;
 
     public Polygon(Point[] points) {
-        this.points = new Point[points.length];
-        System.arraycopy(points, 0, this.points, 0, points.length);
-    }
+        this.points=new Point[points.length];
 
-    public Polygon(Polygon p) {
+        for(int i=0; i< points.length; ++i) {
+            this.points[i] = new Point(points[i]);
+        }
+        //System.arraycopy(points, 0, this.points, 0, points.length);
+    }
+    public Polygon(Polygon p){
         this(p.points);
     }
 
@@ -26,6 +29,6 @@ public class Polygon {
         for (Point point: points){
             pointString.append(point.getX()).append(",").append(point.getY()).append(" ");
         }
-        return String.format(Locale.ENGLISH, "<polygon points=\"%s\" style=\"fill:lime;stroke:purple;stroke-width:3\" />", pointString.toString());
+        return String.format(Locale.ENGLISH, "<polygon points=\"%s\" style=\"fill:lime;stroke:purple;stroke-width:3\" />", pointString);
     }
 }
