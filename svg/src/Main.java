@@ -8,6 +8,8 @@ public class Main {
         points[4] = new Point (252.4F,62.7F);
 
         Polygon polygon = new Polygon(points);
+        points[2] = new Point(3,5);
+        Polygon tempPolygon = new Polygon(polygon);
         System.out.println(polygon.toSvg());
     }
 }
