@@ -1,13 +1,17 @@
 import java.util.Arrays;
 import java.util.Locale;
 
-public class Polygon {
+public class Polygon extends Shape {
 
     private Point [] points;
 
     public Polygon(Point[] points) {
+        this(points,new Style("transparent","black", 1.0));
+        //System.arraycopy(points, 0, this.points, 0, points.length);
+    }
+    public Polygon(Point[] points, Style style) {
         this.points=new Point[points.length];
-
+        this.style=style;
         for(int i=0; i< points.length; ++i) {
             this.points[i] = new Point(points[i]);
         }
@@ -15,6 +19,16 @@ public class Polygon {
     }
     public Polygon(Polygon p){
         this(p.points);
+    }
+
+    public static Polygon square(Segment segment, Style style){
+        Segment perp = segment.perpendicular();
+        Point [] pointsSquare = new Point[4];
+        pointsSquare[0] = segment.getP1();
+        pointsSquare[1] = perp.getP1();
+        pointsSquare[2] = segment.getP2();
+        pointsSquare[3] = perp.getP2();
+        return new Polygon(pointsSquare, style);
     }
 
     @Override
@@ -29,6 +43,6 @@ public class Polygon {
         for (Point point: points){
             pointString.append(point.getX()).append(",").append(point.getY()).append(" ");
         }
-        return String.format(Locale.ENGLISH, "<polygon points=\"%s\" style=\"fill:lime;stroke:purple;stroke-width:3\" />", pointString);
+        return String.format(Locale.ENGLISH, "<polygon points=\"%s\" style="+style.toSvg()+"/>", pointString);
     }
 }
