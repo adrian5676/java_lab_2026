@@ -52,7 +52,7 @@ and the russians fire another round
 we get so near yet so far away
 we wont life to fight another day
 
-we get so close, near enough to fight!
+we get so clodasse, near enough to fight!
 when a russian gets me in his sights
 he pulls the trigger and i feel the blow..
 the bullet strikes on my horse below
