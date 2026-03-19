@@ -1,15 +1,20 @@
-public class Style {
-    public final String fillColor;
-    public final String strokeColor;
-    public final Double strokeWidth;
+import java.util.Locale;
 
-    public Style(String fillColor,String strokeColor, Double strokeWidth){
-        this.fillColor=fillColor;
-        this.strokeColor=strokeColor;
-        this.strokeWidth=strokeWidth;
+public class Style {
+    // final oznacza, że raz ustawione pole, nie może być modyfikowane
+    public final String fillColor, strokeColor;
+    public final double strokeWidth;
+
+    public Style(String fillColor, String strokeColor, double strokeWidth) {
+        this.fillColor = fillColor;
+        this.strokeColor = strokeColor;
+        this.strokeWidth = strokeWidth;
     }
-    //style="fill:lime;stroke:purple;stroke-width:3"
-    public String toSvg(){
-        return "\"fill:"+fillColor+";stroke:"+strokeColor+";stroke-width:"+strokeWidth+'"';
+
+    public String toSvg() {
+        return String.format(Locale.ENGLISH,
+                "fill:%s;stroke:%s;stroke-width:%f",
+                fillColor, strokeColor, strokeWidth
+        );
     }
 }

@@ -1,60 +1,59 @@
-import java.util.Locale;
-
 public class Point {
-    private float x;
-    private float y;
-    public Point(Point p){
-        this.x = p.x;
-        this.y = p.y;
+    private double x, y;
+
+    // konstruktor to specjalna metoda, której używamy
+    // do tworzenia obiektów klasy
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
     }
-    public Point(float x, float y){
-        this.x=x;
-        this.y=y;
+    // konstruktor bezargumentowy
+    public Point() {
+        this.x = 0;
+        this.y = 0;
     }
-    public Point(){
-        this.x=0.0f;
-        this.y=0.0f;
+    // konstruktor kopiujący
+    public Point(Point other) {
+        this.x = other.x;
+        this.y = other.y;
+    }
+
+    // akcesor (getter)
+    public double getX() {
+        return x;
+    }
+    // mutator (setter)
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
     }
 
     @Override
     public String toString() {
-        return "Point{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
+        return "(" + this.x + ", " + y + ")";
     }
 
-    public void setX(float x){
-        this.x=x;
-    }
-    public void setY(float y){
-        this.y=y;
-    }
-    public float getX(){
-        return x;
-    }
-    public float getY(){
-        return y;
+    public String toSvg() {
+        return "<circle r=\"2\" cx=\"" + this.x +
+                "\" cy=\"" + this.y + "\" fill=\"black\" />";
     }
 
-
-    public String toSvg(){
-        return String.format(Locale.ENGLISH,"<circle r=\"5\" cx=\"%f\" cy=\"%f\" fill=\"red\" />",x,y);
+    public void translate(double dx, double dy) {
+        x += dx;
+        this.y += dy;
     }
 
-    public void translate(float dx, float dy){
-        x=x+dx;
-        y=y+dy;
+    public Point translated(double dx, double dy) {
+        Point newPoint = new Point();
+        newPoint.x = this.x + dx;
+        newPoint.y = y + dy;
+        return newPoint;
     }
-
-    public Point translated(float dx, float dy){
-        Point point = new Point();
-        point.x=this.x+dx;
-        point.y=this.y+dy;
-
-        return point;
-    }
-
-
-
 }

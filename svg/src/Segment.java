@@ -1,40 +1,78 @@
 public class Segment {
-    private Point p, q;
-    public Segment(Point p, Point q){
-        this.p=p;
-        this.q=q;
+    private Point a, b;
+
+    public Segment perpendicular() {
+        // wektor prostopadły
+        double pdx = - (b.getY() - a.getY());
+        double pdy = b.getX() - a.getX();
+        // środek odcinka
+        double mx = (a.getX() + b.getX()) / 2;
+        double my = (a.getY() + b.getY()) / 2;
+        // połowa wektora prostopadłego
+        pdx = pdx / 2;
+        pdy = pdy / 2;
+        Point p1 = new Point(mx - pdx, my - pdy);
+        Point p2 = new Point(mx + pdx, my + pdy);
+        return new Segment(p1, p2);
     }
 
-    public Point getP1(){
-        return p;
-    }
-    public Point getP2(){
-        return q;
+    public Segment(Point a, Point b) {
+        // używamy konstruktora kopiującego punkt
+        this.a = new Point(a);
+        this.b = new Point(b);
     }
 
-    public Segment perpendicular(){
-        float x1=p.getX();
-        float x2= q.getX();
-        float y1=p.getY();
-        float y2= q.getY();
-        float midX=(x1+x2)/2.0f;
-        float midY=(y1+y2)/2.0f;
-        float dx=(x2-x1)/2.0f;
-        float dy=(y2-y1)/2.0f;
-        Point p3=new Point(midX-dy, midY+dx);
-        Point p4= new Point(midX+dy, midY-dx);
-        return new Segment(p3, p4);
+    public Segment() {
+        // jeśli ktoś nie chce podawać punktów podcza tworzenia
+        // to niech będą null
+        this.a = null;
+        this.b = null;
+    }
+
+    public Point getA() {
+        return a;
+    }
+
+    public void setA(Point a) {
+        // używamy konstruktora kopiującego punkt
+        this.a = new Point(a);
+    }
+
+    public Point getB() {
+        return b;
+    }
+
+    public void setB(Point b) {
+        // używamy konstruktora kopiującego punkt
+        this.b = new Point(b);
+    }
+
+    public double length() {
+        double dx = b.getX() - a.getX();
+        double dy = b.getY() - a.getY();
+        return Math.sqrt(dx*dx + dy*dy);
     }
 
     @Override
     public String toString() {
         return "Segment{" +
-                "p=" + p +
-                ", q=" + q +
+                "a=" + a +
+                ", b=" + b +
                 '}';
     }
 
-    public float length(){
-        return (float) Math.hypot(p.getX() - q.getX(), p.getY() - q.getY());
+    public String toSvg() {
+        return "<line x1=\""+ a.getX() + "\" y1=\"" + a.getY() + "\" " +
+                "x2=\"" + b.getX() + "\" y2=\"" + b.getY() +"\" " +
+                "style=\"stroke:red;stroke-width:4\" />";
+    }
+
+    public static Segment maxLength(Segment[] segments) {
+        Segment result = null;
+
+        for(Segment seg: segments) {
+            if ( result == null || seg.length() > result.length()) result = seg;
+        }
+        return result;
     }
 }

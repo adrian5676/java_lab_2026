@@ -1,35 +1,44 @@
 import java.util.Arrays;
-import java.util.Locale;
 
-public class Polygon extends Shape {
+public class Polygon {
+    private Point[] points;
+    private Style style;
 
-    private Point [] points;
+    public static Polygon square(Segment seg, Style style) {
+        Segment perp = seg
+    }
+
+    public BoundingBox boundingBox() {
+        Point p0 = new Point(points[0]); // lewy górny róg
+        Point p1 = new Point(points[0]); // prawy dolny róg
+        for (Point p : points) {
+            if (p.getX() < p0.getX()) p0.setX(p.getX());
+            if (p.getX() > p1.getX()) p1.setX(p.getX());
+            if (p.getY() < p0.getY()) p0.setY(p.getY());
+            if (p.getY() > p1.getY()) p1.setY(p.getY());
+        }
+
+        return new BoundingBox(
+                p0.getX(),
+                p0.getY(),
+                p1.getX() - p0.getX(),
+                p1.getY() - p0.getY()
+        );
+
+    }
 
     public Polygon(Point[] points) {
-        this(points,new Style("transparent","black", 1.0));
-        //System.arraycopy(points, 0, this.points, 0, points.length);
-    }
-    public Polygon(Point[] points, Style style) {
-        this.points=new Point[points.length];
-        this.style=style;
-        for(int i=0; i< points.length; ++i) {
-            this.points[i] = new Point(points[i]);
-        }
-        //System.arraycopy(points, 0, this.points, 0, points.length);
-    }
-    public Polygon(Polygon p){
-        this(p.points);
+        this(points, new Style("none", "black", 1));
     }
 
-    public static Polygon square(Segment segment, Style style){
-        Segment perp = segment.perpendicular();
-        Point [] pointsSquare = new Point[4];
-        pointsSquare[0] = segment.getP1();
-        pointsSquare[1] = perp.getP1();
-        pointsSquare[2] = segment.getP2();
-        pointsSquare[3] = perp.getP2();
-        return new Polygon(pointsSquare, style);
+    public Polygon(Point[] points, Style style) {
+        this.points = new Point[points.length];
+        for (int i = 0; i < points.length; i++) {
+            this.points[i] = new Point(points[i]);
+        }
+        this.style = style;
     }
+
 
     @Override
     public String toString() {
@@ -37,12 +46,16 @@ public class Polygon extends Shape {
                 "points=" + Arrays.toString(points) +
                 '}';
     }
-    //<polygon points="100,10 150,190 50,190" style="fill:lime;stroke:purple;stroke-width:3" />
-    public String toSvg(){
-        StringBuilder pointString = new StringBuilder();
-        for (Point point: points){
-            pointString.append(point.getX()).append(",").append(point.getY()).append(" ");
+
+    public String toSvg() {
+        String pointsString = "";
+        for (Point p : points) {
+            pointsString += p.getX() + "," + p.getY() + " ";
         }
-        return String.format(Locale.ENGLISH, "<polygon points=\"%s\" style="+style.toSvg()+"/>", pointString);
+
+        return String.format("<polygon points=\"%s\" " +
+                        "style=\"%s\" />",
+                pointsString, style.toSvg()
+        );
     }
 }
