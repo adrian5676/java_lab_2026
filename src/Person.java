@@ -63,12 +63,22 @@ public class Person implements Comparable<Person> {
         return youngest;
     }
 
-    public List<Person> getChildren(){
-        List<Person> result = children.stream().toList();
+    public List<Person> getChildren() {
+        List<Person> result = new ArrayList<>();
+        result.addAll(children);
         result.sort(Person::compareTo);
         return result;
+
+        //return children.stream().sorted().toList();
+
+        //List<Person> result = new ArrayList<>(children.stream().toList());
+        //result.sort(Person::compareTo);
+        //return result;
     }
 
+    public String name() {
+        return String.format("%s %s",firstName, lastName);
+    }
 
     @Override
     public int compareTo(Person other) {
