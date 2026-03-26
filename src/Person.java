@@ -65,7 +65,7 @@ public class Person implements Comparable<Person> {
 
     public List<Person> getChildren(){
         List<Person> result = children.stream().toList();
-
+        result.sort(Person::compareTo);
         return result;
     }
 
