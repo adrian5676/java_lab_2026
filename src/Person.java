@@ -1,11 +1,8 @@
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Set;
+import java.util.*;
 
-public class Person {
-    private final String firstName;
+public class Person implements Comparable<Person> {
+    private final String  firstName;
     private final String lastName;
     private final LocalDate birthday;
 
@@ -16,41 +13,65 @@ public class Person {
         this.lastName = lastName;
         this.birthday = birthday;
     }
-    public boolean adopt(Person child){
-        if (child == this) return false;
-        return children.add(child);
-    }
 
     @Override
     public String toString() {
         return "Person{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", birthday=" + birthday + '\'' +
+                ", birthday=" + birthday +
                 ", children=" + children +
                 '}';
     }
 
-    public Person getYoungestChild(){
-
+    public boolean adopt(Person child){
+        if (child == this) return false;
+        return children.add(child);
     }
-    /*public Person getYoungestChild(){
-        if (this.children.isEmpty()){
+/*
+    public Person getYoungestChild() {
+        if (this.children.isEmpty()) {
             return null;
         }
         Iterator<Person> iter = this.children.iterator();
         Person now = iter.next();
         Person youngest = now;
         while (true) {
-            if (youngest.birthday.compareTo(now.birthday)>0)
+            if (youngest.birthday.compareTo(now.birthday)>0) {
                 youngest=now;
-        }
-        try {
-            now = iter.next();
-        } catch (NoSuchElementException e) {
-            break;
+            }
+            try {
+                now = iter.next();
+            } catch (NoSuchElementException e) {
+                break;
+            }
         }
         return youngest;
     }
-*/
+
+ */
+
+    public Person getYoungestChild() {
+        if (this.children.isEmpty()) {
+            return null;
+        }
+        Person youngest = children.iterator().next();
+        for(Person person: children) {
+            if(youngest.compareTo(person)>0)
+                youngest = person;
+        }
+        return youngest;
+    }
+
+    public List<Person> getChildren(){
+        List<Person> result = children.stream().toList();
+
+        return result;
+    }
+
+
+    @Override
+    public int compareTo(Person other) {
+        return this.birthday.compareTo(other.birthday);
+    }
 }
