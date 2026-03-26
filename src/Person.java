@@ -1,5 +1,7 @@
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 public class Person {
@@ -30,12 +32,25 @@ public class Person {
     }
 
     public Person getYoungestChild(){
+
+    }
+    /*public Person getYoungestChild(){
         if (this.children.isEmpty()){
             return null;
         }
-        Person now;
-        Person youngest;
-
+        Iterator<Person> iter = this.children.iterator();
+        Person now = iter.next();
+        Person youngest = now;
+        while (true) {
+            if (youngest.birthday.compareTo(now.birthday)>0)
+                youngest=now;
+        }
+        try {
+            now = iter.next();
+        } catch (NoSuchElementException e) {
+            break;
+        }
+        return youngest;
     }
-
+*/
 }
