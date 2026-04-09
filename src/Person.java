@@ -20,6 +20,15 @@ public class Person implements Comparable<Person> {
         this(firstName, lastName, birthday, null);
     }
 
+    public static Person fromCsvLine(String line){
+        String[] columns = line.split(",");
+        String fullname = columns[0];
+        String[] name = fullname.split(",");
+        String fname = name[0];
+        String lname = name[1];
+        String birth
+
+    }
 
     @Override
     public String toString() {
