@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Person implements Comparable<Person> {
@@ -26,7 +27,9 @@ public class Person implements Comparable<Person> {
         String[] name = fullname.split(",");
         String fname = name[0];
         String lname = name[1];
-        String birth
+        String birth = columns[1];
+        String death = columns[2];
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.y");
 
     }
 
