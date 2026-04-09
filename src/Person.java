@@ -5,14 +5,21 @@ public class Person implements Comparable<Person> {
     private final String  firstName;
     private final String lastName;
     private final LocalDate birthday;
+    private final LocalDate death;
 
     private final Set<Person> children = new HashSet<>();
 
-    public Person(String firstName, String lastName, LocalDate birthday) {
+    public Person(String firstName, String lastName, LocalDate birthday, LocalDate death) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
+        this.death = death;
     }
+
+    public Person(String firstName, String lastName, LocalDate birthday) {
+        this(firstName, lastName, birthday, null);
+    }
+
 
     @Override
     public String toString() {
@@ -85,3 +92,4 @@ public class Person implements Comparable<Person> {
         return this.birthday.compareTo(other.birthday);
     }
 }
+//wa
