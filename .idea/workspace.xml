@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7c3b20f-ab87-4138-b4af-562f5cccbbe9" name="Changes" comment="ratuj">
+    <list default="true" id="e7c3b20f-ab87-4138-b4af-562f5cccbbe9" name="Changes" comment="genealgia2 zad2">
+      <change afterPath="$PROJECT_DIR$/src/NegativeLifespanException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Family.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Family.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Person.java" afterDir="false" />
     </list>
@@ -16,6 +16,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Exception" />
       </list>
     </option>
   </component>
@@ -159,7 +160,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775725545280</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="genealgia2 zad2">
+      <option name="closed" value="true" />
+      <created>1775726630709</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1775726630709</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -176,7 +185,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="pomoz" />
     <MESSAGE value="ratuj" />
-    <option name="LAST_COMMIT_MESSAGE" value="ratuj" />
+    <MESSAGE value="genealgia2 zad2" />
+    <option name="LAST_COMMIT_MESSAGE" value="genealgia2 zad2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
