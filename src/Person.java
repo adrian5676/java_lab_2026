@@ -1,13 +1,10 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.*;
 
-public class Person implements Comparable<Person> {
+public class Person implements Comparable<Person>, Serializable {
     private final String  firstName;
     private final String lastName;
     private final LocalDate birthday;
@@ -32,25 +29,26 @@ public class Person implements Comparable<Person> {
     }
 
     public static List<Person> fromCsv(String path) throws IOException {
-        ArrayList<Person> people = new ArrayList<>();
+        Map<String, PersonWithParentStrings> people = new HashMap<>();
         BufferedReader file =new BufferedReader(new FileReader(path));
         String line;
         file.readLine();
         while((line = file.readLine())!=null){
             try {
-                Person newperson = fromCsvLine(line);
-                for(Person person: people){
+                PersonWithParentStrings newperson = PersonWithParentStrings.fromCsvLine(line);
+                /*for(PersonWithParentStrings person: people){
                     if(person.name().equals(newperson.name())){
                         throw new AmbiguousPersonException(person, newperson);
                     }
-                }
-                people.add(newperson);
-            } catch (NegativeLifespanException | AmbiguousPersonException e) {
+                }*/
+                people.put(newperson.name(), newperson);
+            } catch (NegativeLifespanException/* | AmbiguousPersonException*/ e) {
                 System.err.println(e.getMessage());
             }
         }
         file.close();
-        return people;
+        PersonWithParentStrings.connectRelatives(people);
+        return PersonWithParentStrings.unpackMap(people);
     }
 
     public static Person fromCsvLine(String line) throws NegativeLifespanException {
@@ -155,5 +153,18 @@ public class Person implements Comparable<Person> {
     String negativeLifespanExceptionMessage(){
         return String.format("Osoba %s %s ma datę śmierci %s wcześniejszą niż datę urodzenia %s",
                 this.firstName, this.lastName, this.death, this.birthday);
+    }
+    public static void toBinaryFile(String path, List<Person> people) throws IOException {
+        FileOutputStream fos = new FileOutputStream(path);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(people);
+        oos.close();
+    }
+    public  static List<Person> fromBinaryFile(String path) throws IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream(path);
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        List<Person> people = (ArrayList<Person>) ois.readObject();
+        ois.close();
+        return people;
     }
 }
