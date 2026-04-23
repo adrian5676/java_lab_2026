@@ -208,9 +208,13 @@ public class Person implements Comparable<Person>, Serializable {
     }
     public static List<Person> getDeceasedByLifespan(List<Person> people){
         return people.stream()
-                .filter( person -> person.death != null)
-                .sorted(Comparator.comparingLong(Person::lifespan))
+                .filter(person -> person.death != null)
+                .sorted(Comparator.comparingLong(Person::lifespan).reversed())
                 .toList();
     }
-
+    public static Person getOldestLiving(List<Person>people){
+        return people.stream().filter(person -> person.death == null)
+                .min(Comparator.comparing(p -> p.birthday))
+                .orElse(null);
+    }
 }

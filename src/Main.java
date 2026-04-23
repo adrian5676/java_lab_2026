@@ -22,9 +22,18 @@ public class Main {
         PlantUMLRunner.generate(Person.generateTree(people),"output", "test");
 //        List<Person> filtered = Person.filterPersonBySubstring(people, "ska");
         //System.out.println(filtered);
-        List<Person> sorted = Person.sorted(people);
+        /*List<Person> sorted = Person.sorted(people);
         sorted.stream()
                 .map(Person::name)
-                .forEach(System.out::println);
+                .forEach(System.out::println);*/
+        /*List<Person> sortedDeath = Person.getDeceasedByLifespan(people);
+        sortedDeath.stream()
+                .map(Person::name)
+                .forEach(System.out::println);*/
+        System.out.println();
+        Person p = Person.getOldestLiving(people);
+        System.out.println(p);
+
+
     }
 }
