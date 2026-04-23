@@ -179,6 +179,38 @@ public class Person implements Comparable<Person>, Serializable {
                 .map(person -> String.format("object \"%s\"" ,person.name()))
                 .collect(Collectors.joining("\n"));
 
-        return String.format("@startuml\n%s\n@enduml", objectsString);
+//        StringBuilder relationsStringBuffer = new StringBuilder();
+//        for (Person person: people) {
+//            for (Person child: person.getChildren()) {
+//                relationsStringBuffer.append(String.format("\"%s\" <|-- \"%s\"\n",person.name(),child.name()));
+//            }
+//        }
+        String relationsString = objects.stream()
+                .flatMap(parent -> parent.getChildren().stream()
+                        .map(child -> String.format("\"%s\" <|-- \"%s\"\n",parent.name(),child.name())))
+                .collect(Collectors.joining("\n"));
+
+        return String.format("@startuml\n%s\n%s\n@enduml", objectsString, relationsString);
     }
+    public static List<Person> filterPersonBySubstring(List<Person> people, String substring){
+        return people.stream()
+                .filter(person -> person.name().contains(substring))
+                .collect(Collectors.toList());
+    }
+
+    public static List<Person> sorted(List<Person> people) {
+        return people.stream().sorted().toList();
+//        return people.stream().sorted(Comparator.comparing(p -> p.birthday)).toList();
+    }
+    public long lifespan(){
+        if(death == null) return -1;
+        return java.time.temporal.ChronoUnit.DAYS.between(birthday,death);
+    }
+    public static List<Person> getDeceasedByLifespan(List<Person> people){
+        return people.stream()
+                .filter( person -> person.death != null)
+                .sorted(Comparator.comparingLong(Person::lifespan))
+                .toList();
+    }
+
 }
