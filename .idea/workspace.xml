@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7c3b20f-ab87-4138-b4af-562f5cccbbe9" name="Changes" comment="genealgia3 zad 5" />
+    <list default="true" id="e7c3b20f-ab87-4138-b4af-562f5cccbbe9" name="Changes" comment="genealgia3 zad 7">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Person.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -211,7 +215,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776937784325</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="genealgia3 zad 7">
+      <option name="closed" value="true" />
+      <created>1776938230869</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1776938230869</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -234,18 +246,8 @@
     <MESSAGE value="genealgia2 zad7" />
     <MESSAGE value="genealgia3 zad 2a" />
     <MESSAGE value="genealgia3 zad 5" />
-    <option name="LAST_COMMIT_MESSAGE" value="genealgia3 zad 5" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Person.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="genealgia3 zad 7" />
+    <option name="LAST_COMMIT_MESSAGE" value="genealgia3 zad 7" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
