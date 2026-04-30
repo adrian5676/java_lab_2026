@@ -18,5 +18,47 @@ public class CustomList<T> {
         throw new NoSuchElementException(e);}
     }
 
+    public void addFirst(T value){
+        Node<T> current = new Node<>(value, null);
+        head = current;
+        if (tail == null){
+            tail = current;
+        }
+    }
 
+    public T getFirst(){
+        try{return head.value;} catch (NullPointerException e){;
+            throw new NoSuchElementException(e);}
+    }
+
+    public T removeFirst(){
+        if(head == null){
+            throw new NoSuchElementException();}
+        Node<T> current = head;
+        if (head == tail) {
+            tail = null;
+        }
+        head = head.next;
+        return current.value;
+    }
+    public T removeLast(){
+        if(head == null){
+            throw new NoSuchElementException();}
+        Node<T> current = head;
+        if (head == tail) {
+            head = null;
+            tail = null;
+            return current.value;
+        } else {
+
+            while(current.next != tail){
+                current = current.next;
+            }
+            current.next = null;
+            T result = tail.value;
+            tail = current;
+            return result;
+        }
+    }
 }
+

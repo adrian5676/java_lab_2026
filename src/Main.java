@@ -4,6 +4,12 @@ public class Main {
         list.addLast("ala");
         list.addLast("ma");
         list.addLast("kota");
-        System.out.println(list.getLast());
+        list.addLast("Mała");
+        System.out.println(list.removeLast());
+        System.out.println(list.removeLast());
+        System.out.println(list.removeLast());
+        System.out.println(list.removeLast());
+        System.out.println(list.removeLast());
+
     }
 }
