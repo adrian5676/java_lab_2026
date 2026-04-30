@@ -1,39 +1,45 @@
+import java.util.AbstractList;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class CustomList<T> {
+public class CustomList<T> extends AbstractList<T> {
     private Node<T> head = null;
     private Node<T> tail = null;
 
     public void addLast(T value){
         Node<T> current = new Node<>(value, null);
-        if(head == null){
+        if(head==null){
             head = current;
         } else {
             tail.next = current;
         }
         tail = current;
     }
+
     public T getLast(){
-        try{return tail.value;} catch (NullPointerException e){;
-        throw new NoSuchElementException(e);}
+        try{return tail.value;} catch (NullPointerException e) {
+            throw new NoSuchElementException(e);
+        }
     }
 
-    public void addFirst(T value){
-        Node<T> current = new Node<>(value, null);
+    public void addFirst(T value) {
+        Node<T> current = new Node<>(value, head);
         head = current;
-        if (tail == null){
+        if (tail == null) {
             tail = current;
         }
     }
 
     public T getFirst(){
-        try{return head.value;} catch (NullPointerException e){;
-            throw new NoSuchElementException(e);}
+        try{return head.value;} catch (NullPointerException e) {
+            throw new NoSuchElementException(e);
+        }
     }
 
-    public T removeFirst(){
-        if(head == null){
-            throw new NoSuchElementException();}
+    public T removeFirst() {
+        if (head == null) {
+            throw new NoSuchElementException();
+        }
         Node<T> current = head;
         if (head == tail) {
             tail = null;
@@ -41,17 +47,18 @@ public class CustomList<T> {
         head = head.next;
         return current.value;
     }
+
     public T removeLast(){
-        if(head == null){
-            throw new NoSuchElementException();}
+        if (head == null) {
+            throw new NoSuchElementException();
+        }
         Node<T> current = head;
-        if (head == tail) {
-            head = null;
-            tail = null;
+        if (head == tail){
+            head=null;
+            tail=null;
             return current.value;
         } else {
-
-            while(current.next != tail){
+            while (current.next != tail){
                 current = current.next;
             }
             current.next = null;
@@ -60,5 +67,68 @@ public class CustomList<T> {
             return result;
         }
     }
-}
 
+    @Override
+    public T get(int i) {
+        if (i==0) {
+            if (head==null){
+                return null;
+            }else{
+                return head.value;
+            }
+        }else{
+            Node<T> current = head;
+            for(int j=0;j<i;j++) {
+                System.out.println("GET");
+                if (current.next == null)
+                    return null;
+                else
+                    current = current.next;
+            }
+
+            return current.value;
+        }
+    }
+
+    @Override
+    public int size() {
+        if(head==null) {
+            return 0;
+        }else{
+            Node<T> current = head;
+            int i = 1;
+            while(current.next!=null){
+                System.out.println("SIZE");
+
+                current=current.next;
+                i+=1;
+            }
+            return i;
+        }
+    }
+
+    @Override
+    public boolean add(T t) {
+        addLast(t);
+        return true;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private Node<T> current = head;
+
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public T next() {
+                T result = current.value;
+                current = current.next;
+                return result;
+            }
+        };
+    }
+}
