@@ -14,4 +14,24 @@ public class PlaylistTest {
         playlist.add(new Song("Bathory", "The Lake", 300));
         assertEquals(1, playlist.size());
     }
+
+    @Test
+    public void testSameElement(){
+        Playlist playlist = new Playlist();
+        Song song = new Song("Bathory", "The Lake", 300);
+        Song song2 = new Song("Bathory", "The Lake", 300);
+        playlist.add(song);
+        assertTrue( playlist.contains(song));
+        assertEquals(playlist.get(0), song2);
+    }
+    @Test
+    public void testEqualElement(){
+        Playlist playlist = new Playlist();
+        Song song = new Song("Bathory", "The Lake", 300);
+        Song song2 = new Song("Bathory", "The Lake", 300);
+        playlist.add(song);
+        assertEquals(playlist.get(0), song2);;
+        assertTrue(playlist.contains(song));
+
+    }
 }
