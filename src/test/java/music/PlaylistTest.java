@@ -47,4 +47,27 @@ public class PlaylistTest {
         assertEquals(song2, playlist.atSecond(300));
         assertEquals(song3, playlist.atSecond(400));
     }
+
+
+    private IndexOutOfBoundsException testDoesThrowExceptionCommon(int seconds){
+        Playlist playlist = new Playlist();
+        Song song1 = new Song("Iron Maiden", "Killers", 260);
+        Song song2 = new Song( "Megadeth", "Dawn Patrol", 120);
+        Song song3 = new Song("Darkthrone", "Natassja in Eternal Sleep", 250);
+        playlist.add(song1);
+        playlist.add(song2);
+        playlist.add(song3);
+        return assertThrows(IndexOutOfBoundsException.class, ()->playlist.atSecond(seconds));
+    }
+
+    @Test
+    public void testDoesThrowException(){
+        assertEquals("Zbyt duży czas", testDoesThrowExceptionCommon(1000).getMessage());
+    }
+
+    @Test
+    public void testDoesThrowNegativeException(){
+
+        assertEquals("Ujemny czas", testDoesThrowExceptionCommon(-1000).getMessage());
+    }
 }
